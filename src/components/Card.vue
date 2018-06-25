@@ -18,5 +18,6 @@ export default {
   padding: 1rem;
   box-sizing: border-box;
   box-shadow: 10px 10px 5px 0px rgba(0, 0, 20px, 0.25);
+  pointer-events: none;
 }
 </style>

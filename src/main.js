@@ -26,8 +26,10 @@ Vue.directive('swipe', {
         vnode.context.$emit(`swiped${dir}`)
       }
       init () {
-        el.addEventListener('touchstart', e => { this.moveStart(e.touches[0]) })
-        el.addEventListener('touchend', e => { this.moveEnd(e.changedTouches[0]) })
+        el.addEventListener('touchstart', e => { this.moveStart(e.touches[0]) }, false)
+        el.addEventListener('mousedown', e => { this.moveStart(e) }, false)
+        el.addEventListener('touchend', e => { this.moveEnd(e.changedTouches[0]) }, false)
+        el.addEventListener('mouseup', e => {  this.moveEnd(e) }, false)
       }
     }
     const swipe = new Swipe(el)
@@ -35,7 +37,9 @@ Vue.directive('swipe', {
   },
   unbind: (el) => {
     el.removeEventListener('touchstart')
+    el.removeEventListener('mousedown')
     el.removeEventListener('touchend')
+    el.removeEventListener('mouseup')
   }
 })
 
